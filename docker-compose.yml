@@ -101,13 +101,13 @@ services:
         --topic booking.events --partitions 12 --replication-factor 1
 
       kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic reservation.events.DLQ --partitions 3 --replication-factor 1
+        --topic reservation.events.DLQ --partitions 12 --replication-factor 1
 
       kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic payment.events.DLQ --partitions 3 --replication-factor 1
+        --topic payment.events.DLQ --partitions 12 --replication-factor 1
 
       kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic booking.events.DLQ --partitions 3 --replication-factor 1
+        --topic booking.events.DLQ --partitions 12 --replication-factor 1
 
       echo 'Topics created.'
       "
