@@ -1,9 +1,12 @@
 package com.ticketing.common.event;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.Getter;
+
 import java.time.Instant;
 import java.util.UUID;
 
+@Getter
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public abstract class DomainEvent {
 
@@ -17,7 +20,4 @@ public abstract class DomainEvent {
         this.occurredAt = Instant.now();
     }
 
-    public String getEventId() { return eventId; }
-    public String getEventType() { return eventType; }
-    public Instant getOccurredAt() { return occurredAt; }
 }

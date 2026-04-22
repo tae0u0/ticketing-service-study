@@ -1,5 +1,8 @@
 package com.ticketing.common.event;
 
+import lombok.Getter;
+
+@Getter
 public class PaymentSucceededEvent extends DomainEvent {
 
     private Long paymentId;
@@ -26,11 +29,4 @@ public class PaymentSucceededEvent extends DomainEvent {
         this.pgTransactionId = pgTransactionId;
     }
 
-    public Long getPaymentId() { return paymentId; }
-    public Long getReservationId() { return reservationId; }
-    public Long getUserId() { return userId; }
-    public Long getSeatId() { return seatId; }
-    public Long getDomainEventId() { return domainEventId; }
-    public int getAmount() { return amount; }
-    public String getPgTransactionId() { return pgTransactionId; }
 }

@@ -1,7 +1,10 @@
 package com.ticketing.common.event;
 
+import lombok.Getter;
+
 import java.time.Instant;
 
+@Getter
 public class SeatHeldEvent extends DomainEvent {
 
     private Long reservationId;
@@ -23,9 +26,4 @@ public class SeatHeldEvent extends DomainEvent {
         this.expiresAt = expiresAt;
     }
 
-    public Long getReservationId() { return reservationId; }
-    public Long getUserId() { return userId; }
-    public Long getSeatId() { return seatId; }
-    public Long getDomainEventId() { return domainEventId; }
-    public Instant getExpiresAt() { return expiresAt; }
 }

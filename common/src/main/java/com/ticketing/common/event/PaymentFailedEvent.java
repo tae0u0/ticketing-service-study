@@ -1,5 +1,8 @@
 package com.ticketing.common.event;
 
+import lombok.Getter;
+
+@Getter
 public class PaymentFailedEvent extends DomainEvent {
 
     private Long paymentId;
@@ -24,10 +27,4 @@ public class PaymentFailedEvent extends DomainEvent {
         this.failureReason = failureReason;
     }
 
-    public Long getPaymentId() { return paymentId; }
-    public Long getReservationId() { return reservationId; }
-    public Long getUserId() { return userId; }
-    public Long getSeatId() { return seatId; }
-    public Long getDomainEventId() { return domainEventId; }
-    public String getFailureReason() { return failureReason; }
 }

@@ -1,5 +1,8 @@
 package com.ticketing.common.event;
 
+import lombok.Getter;
+
+@Getter
 public class SeatHoldExpiredEvent extends DomainEvent {
 
     private Long reservationId;
@@ -19,8 +22,4 @@ public class SeatHoldExpiredEvent extends DomainEvent {
         this.domainEventId = domainEventId;
     }
 
-    public Long getReservationId() { return reservationId; }
-    public Long getUserId() { return userId; }
-    public Long getSeatId() { return seatId; }
-    public Long getDomainEventId() { return domainEventId; }
 }

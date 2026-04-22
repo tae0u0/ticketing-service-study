@@ -1,5 +1,8 @@
 package com.ticketing.common.event;
 
+import lombok.Getter;
+
+@Getter
 public class BookingCancelledEvent extends DomainEvent {
 
     private Long bookingId;
@@ -21,9 +24,4 @@ public class BookingCancelledEvent extends DomainEvent {
         this.refundAmount = refundAmount;
     }
 
-    public Long getBookingId() { return bookingId; }
-    public Long getUserId() { return userId; }
-    public Long getSeatId() { return seatId; }
-    public Long getDomainEventId() { return domainEventId; }
-    public int getRefundAmount() { return refundAmount; }
 }
