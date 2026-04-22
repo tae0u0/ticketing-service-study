@@ -1,7 +1,9 @@
 package com.ticketing.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
 
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
@@ -28,9 +30,4 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> error(String code, String message) {
         return new ApiResponse<>(false, null, code, message);
     }
-
-    public boolean isSuccess() { return success; }
-    public T getData() { return data; }
-    public String getCode() { return code; }
-    public String getMessage() { return message; }
 }
