@@ -86,31 +86,8 @@ services:
       kafka:
         condition: service_healthy
     entrypoint: [ '/bin/sh', '-c' ]
-    command: |
-      "
-      echo 'Waiting for Kafka...'
-      sleep 5
-
-      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic reservation.events --partitions 12 --replication-factor 1
-
-      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic payment.events --partitions 12 --replication-factor 1
-
-      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic booking.events --partitions 12 --replication-factor 1
-
-      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic reservation.events.DLQ --partitions 12 --replication-factor 1
-
-      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic payment.events.DLQ --partitions 12 --replication-factor 1
-
-      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists \
-        --topic booking.events.DLQ --partitions 12 --replication-factor 1
-
-      echo 'Topics created.'
-      "
+    command:
+      - "sleep 5 && kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic reservation.events --partitions 12 --replication-factor 1 && kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic payment.events --partitions 12 --replication-factor 1 && kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic booking.events --partitions 12 --replication-factor 1 && kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic reservation.events.DLQ --partitions 12 --replication-factor 1 && kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic payment.events.DLQ --partitions 12 --replication-factor 1 && kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic booking.events.DLQ --partitions 12 --replication-factor 1 && echo Topics created."
 
   # ──────────────────────────── Prometheus ────────────────────────────
   prometheus:
