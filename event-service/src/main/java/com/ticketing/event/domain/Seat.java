@@ -62,6 +62,7 @@ public class Seat {
     }
 
     public void release() {
+        if (this.status == SeatStatus.BOOKED) return;
         this.status = SeatStatus.AVAILABLE;
     }
 
