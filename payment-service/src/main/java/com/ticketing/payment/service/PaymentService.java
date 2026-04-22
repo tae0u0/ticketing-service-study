@@ -16,6 +16,7 @@ import com.ticketing.payment.repository.OutboxEventRepository;
 import com.ticketing.payment.repository.PaymentRepository;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class PaymentService {
 
     private final PaymentRepository paymentRepository;
@@ -33,21 +35,6 @@ public class PaymentService {
     private final ObjectMapper objectMapper;
     private final Counter paymentSuccessCounter;
     private final Counter paymentFailureCounter;
-
-    public PaymentService(PaymentRepository paymentRepository,
-                           OutboxEventRepository outboxEventRepository,
-                           MockPGService pgService,
-                           ObjectMapper objectMapper,
-                           MeterRegistry meterRegistry) {
-        this.paymentRepository = paymentRepository;
-        this.outboxEventRepository = outboxEventRepository;
-        this.pgService = pgService;
-        this.objectMapper = objectMapper;
-        this.paymentSuccessCounter = Counter.builder("ticketing.payment.success")
-                .description("결제 성공 건수").register(meterRegistry);
-        this.paymentFailureCounter = Counter.builder("ticketing.payment.failure")
-                .description("결제 실패 건수").register(meterRegistry);
-    }
 
     /**
      * 결제 요청 처리
