@@ -151,6 +151,19 @@ public class ReservationService {
         log.info("예약 확정 reservationId={}", reservationId);
     }
 
+    /**
+     * BookingConfirmedEvent 수신 시 seatId로 HELD 예약을 CONFIRMED 상태로 변경
+     * 만료 스케줄러가 확정된 예약을 실수로 만료시키지 않도록 보호
+     */
+    @Transactional
+    public void confirmReservationByBooking(Long bookingId, Long seatId) {
+        reservationRepository.findBySeatIdAndStatus(seatId, ReservationStatus.HELD)
+                .ifPresent(reservation -> {
+                    reservation.confirm();
+                    log.info("예약 확정 (booking) seatId={} reservationId={}", seatId, reservation.getId());
+                });
+    }
+
     @Transactional(readOnly = true)
     public List<ReservationResponse> getMyReservations(Long userId) {
         return reservationRepository.findByUserIdOrderByCreatedAtDesc(userId).stream()
